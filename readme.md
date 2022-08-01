@@ -174,7 +174,7 @@ https://opendata.sz.gov.cn/data/api/toApiDetails/29200_00403601
 
 - 数据字段解析
 
-  <img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220729214501808.png" alt="image-20220729214501808" style="zoom:80%;" />
+  <img src="./readme.assets/image-20220729214501808.png" alt="image-20220729214501808" style="zoom:80%;" />
 
 ---
 
@@ -190,7 +190,7 @@ https://opendata.sz.gov.cn/data/api/toApiDetails/29200_00403601
 
 - 数据在Redis中的存储以page为键Key，每个Key下存储一个json的值，一个json包含一千条地铁数据
 
-  <img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220730155840638.png" alt="image-20220730155840638" style="zoom:80%;" />
+  <img src="./readme.assets/image-20220730155840638.png" alt="image-20220730155840638" style="zoom:80%;" />
 
 
 
@@ -200,9 +200,9 @@ http://127.0.0.1:6661/doc.html#/home
 
 核对数据共1337页(redis中)
 
-<img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220730162356365.png" alt="image-20220730162356365" style="zoom:80%;" />
+<img src="./readme.assets/image-20220730162356365.png" alt="image-20220730162356365" style="zoom:80%;" />
 
-<img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220730164124387.png" alt="image-20220730164124387" style="zoom:80%;" />
+<img src="./readme.assets/image-20220730164124387.png" alt="image-20220730164124387" style="zoom:80%;" />
 
 ##### 关于knife4j
 
@@ -210,7 +210,7 @@ http://127.0.0.1:6661/doc.html#/home
 
 使用knife4j需要一个swagger的配置类，这个配置类和以前使用swagger几乎是一样的。
 
-<img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220730163622485.png" alt="image-20220730163622485" style="zoom:80%;" />
+<img src="./readme.assets/image-20220730163622485.png" alt="image-20220730163622485" style="zoom:80%;" />
 
 我们只需要在其中指定我们的Controller包名即可自动扫描
 
@@ -218,7 +218,7 @@ http://127.0.0.1:6661/doc.html#/home
 
 我们通过自定义RedisSource来进行数据过滤，所有的数据导入app均以我们的RedisSource为基础，做到数据过滤的效果
 
-<img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220730164422083.png" alt="image-20220730164422083" style="zoom:80%;" />
+<img src="./readme.assets/image-20220730164422083.png" alt="image-20220730164422083" style="zoom:80%;" />
 
 #### 2.5- `cn.java666.etlflink.app.Redis2XXX#main` 将原始数据ETL到各种存储介质
 
@@ -238,7 +238,7 @@ http://topview102:8048/  默认账号密码admin/123456
 
 所以我们最好还是需要手动创建一下分区
 
-<img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220730171111470.png" alt="image-20220730171111470" style="zoom:80%;" />
+<img src="./readme.assets/image-20220730171111470.png" alt="image-20220730171111470" style="zoom:80%;" />
 
 - 直接采用Flink提供好的Kafka Sink类
 
@@ -248,7 +248,7 @@ http://topview102:8048/  默认账号密码admin/123456
 
 `cn.java666.etlflink.app.Redis2Csv#main`实现了 flink sink csv 格式文件，并且支持按天分块保存
 
-<img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220730174222876.png" alt="image-20220730174222876" style="zoom:80%;" />
+<img src="./readme.assets/image-20220730174222876.png" alt="image-20220730174222876" style="zoom:80%;" />
 
 - 自定义一个CSVSinkFunction继承SinkFunction实现invoke方法
 
@@ -278,13 +278,13 @@ http://topview102:8048/  默认账号密码admin/123456
   }
   ````
 
-  <img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220801112517221.png" alt="image-20220801112517221" style="zoom:80%;" />
+  <img src="./readme.assets/image-20220801112517221.png" alt="image-20220801112517221" style="zoom:80%;" />
 
 - **分析结果如图**
 
   发现晚高峰吻合，早高峰数据似乎丢失
 
-  <img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220801122254866.png" alt="image-20220801122254866" style="zoom:80%;" />
+  <img src="./readme.assets/image-20220801122254866.png" alt="image-20220801122254866" style="zoom:80%;" />
 
 - Source为Redis的Source(此处完成脏数据过滤)
 
@@ -292,15 +292,35 @@ http://topview102:8048/  默认账号密码admin/123456
 
 - 关于JSON的序列化和反序列化
 
-  <img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220731213407303.png" alt="image-20220731213407303" style="zoom:80%;" />
+  <img src="./readme.assets/image-20220731213407303.png" alt="image-20220731213407303" style="zoom:80%;" />
 
-  <img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220731201209479.png" alt="image-20220731201209479" style="zoom:80%;" />
+  <img src="./readme.assets/image-20220731201209479.png" alt="image-20220731201209479" style="zoom:80%;" />
 
 #### 2.6- 查看 ES 数据库卡号，对比自己的深圳通地铁卡，发现了一些脱敏规律。
 
-<img src="D:/IDEAworkspace/SZT-bigdata/readme.assets/image-20220801114113342.png" alt="image-20220801114113342" style="zoom:80%;" />
+<img src="./readme.assets/image-20220801114113342.png" alt="image-20220801114113342" style="zoom:80%;" />
 
 ### 3- 搭建数仓：深圳地铁数仓建模
 
 #### 3.1- 第一步，分析业务
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
