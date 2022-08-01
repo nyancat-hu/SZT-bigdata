@@ -15,7 +15,7 @@ import org.apache.flink.streaming.connectors.redis.common.mapper.{RedisCommand, 
  *
  */
 object Jsons2Redis {
-    val SVAE_PATH = "/tmp/szt-data/szt-data-page.jsons"
+    val SVAE_PATH = "D:\\IDEAworkspace\\SZT-bigdata\\szt-data\\szt-data-page-all.json"
 
     def main(args: Array[String]): Unit = {
         val env = StreamExecutionEnvironment.getExecutionEnvironment
@@ -28,7 +28,7 @@ object Jsons2Redis {
             })
 
         //定义 redis 参数
-        val jedis = new FlinkJedisPoolConfig.Builder().setHost("localhost").build()
+        val jedis = new FlinkJedisPoolConfig.Builder().setHost("Topview104").build()
 
         //存到 redis sink
         s.addSink(new RedisSink(jedis, new MyRedisSinkFun))
@@ -39,6 +39,7 @@ object Jsons2Redis {
 
 case class MyRedisSinkFun() extends RedisMapper[JSONObject] {
     override def getCommandDescription: RedisCommandDescription = {
+        // 命令为hashset
         new RedisCommandDescription(RedisCommand.HSET, "szt:pageJson")
     }
 

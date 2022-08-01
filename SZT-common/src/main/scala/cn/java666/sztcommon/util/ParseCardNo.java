@@ -51,16 +51,19 @@ public class ParseCardNo {
 
     public static String parse(@NotNull String no) {
         if (StrUtil.isBlank(no)) {
-            return "滚！！！";
+            //如果给定的字符串为空或仅包含空格代码点，则此方法返回 true ，否则返回 false 。
+            return "无效卡序列";
         }
 
         char[] array = no.toCharArray();
         StringJoiner joiner = new StringJoiner("");
         for (char c : array) {
             if (NumberUtil.isNumber(no)) {
+                // 明文转密文
                 String v = NO2CharMap.get(c).toString();
                 joiner.add(v);
             } else {
+                // 密文转明文
                 String v = char2NOMap.get(c).toString();
                 joiner.add(v);
             }

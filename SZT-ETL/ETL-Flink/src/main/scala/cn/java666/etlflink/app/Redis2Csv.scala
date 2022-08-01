@@ -25,6 +25,7 @@ object Redis2Csv {
             .filter(x => {
                 val json = JSON.parseObject(x)
                 val deal_date = json.getString("deal_date")
+                // 过滤只要某一天的数据
                 deal_date.startsWith(ymd)
             })
             .addSink(new MyCsvSinkFun(ymd))

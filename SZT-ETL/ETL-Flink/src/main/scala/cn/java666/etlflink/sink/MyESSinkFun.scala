@@ -22,6 +22,7 @@ case class MyESSinkFun(index: String) extends ElasticsearchSinkFunction[String] 
 
         val json = JSON.parseObject(element)
         val indexReq = new IndexRequest(index).source(json, XContentType.JSON)
+        // 通过这个对象发送数据就好了
         indexer.add(indexReq)
         println(s"es save element=${element} | json=${json}")
     }

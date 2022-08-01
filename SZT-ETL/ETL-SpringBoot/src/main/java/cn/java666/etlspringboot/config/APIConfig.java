@@ -46,7 +46,7 @@ public class APIConfig {
             //分组名称
             .groupName("ETL-SpringBoot")
             .select()
-            //这里指定Controller扫描包路径
+            //这里指定Controller扫描包路径，将自动生成里边的api调用
             .apis(RequestHandlerSelectors.basePackage("cn.java666.etlspringboot.controller"))
             .paths(PathSelectors.any())
             .build();

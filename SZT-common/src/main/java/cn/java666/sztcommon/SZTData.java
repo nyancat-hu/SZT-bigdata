@@ -17,10 +17,10 @@ import org.junit.Test;
  * 后续还得拆解。
  */
 public class SZTData {
-    String SAVE_PATH = "/tmp/szt-data/szt-data-page-all.json";
+    String SAVE_PATH = "D:\\IDEAworkspace\\SZT-bigdata\\szt-data\\szt-data-page-all.json";
 
     // TODO appKey 自己申请 https://opendata.sz.gov.cn/data/api/toApiDetails/29200_00403601
-    String appKey = "***";
+    String appKey = "ba64e4fac5d044b2860ba23c330cfce0";
 
     /**
      * 这个过程可能花费一个通宵，如果中断，查看已保存数据最后一条的 page，然后调整 i 的起始值继续抓取
@@ -33,6 +33,7 @@ public class SZTData {
             // 一定要加换行符，否则以后处理起来会是灾难。
             // 一定要加换行符，否则以后处理起来会是灾难。
             // 一定要加换行符，否则以后处理起来会是灾难。
+            System.out.println(s+ "\n");
             FileUtil.appendUtf8String(s + "\n", SAVE_PATH);
         }
 

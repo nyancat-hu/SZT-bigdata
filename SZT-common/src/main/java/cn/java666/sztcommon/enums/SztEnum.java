@@ -39,7 +39,7 @@ public enum SztEnum {
         return desc;
     }
 
-    private SztEnum(String val, String desc) {
+    SztEnum(String val, String desc) {
         this.val = val;
         this.desc = desc;
     }

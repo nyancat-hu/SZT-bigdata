@@ -16,7 +16,7 @@ import org.apache.flink.streaming.api.functions.sink.SinkFunction
  */
 
 case class MyCsvSinkFun(day: String) extends SinkFunction[String] {
-    val SAVE_PATH = "/tmp/szt-data/szt-data_" + day + ".csv"
+    val SAVE_PATH = "D:\\IDEAworkspace\\SZT-bigdata\\szt-data\\szt-data_" + day + ".csv"
 
     override def invoke(value: String, context: SinkFunction.Context[_]): Unit = {
         // 11 个字段
@@ -48,11 +48,11 @@ case class MyCsvSinkFun(day: String) extends SinkFunction[String] {
             .add(deal_money)
             .add(equ_no)
             .toString
-
+        // 对每行数据输出一次
         FileUtil.appendUtf8String(csv + "\n", SAVE_PATH)
 
-        val i = FileUtil.readUtf8Lines(SAVE_PATH).size()
-        // 核对 ES 数据库，记录完全一致！！！
-        println(i) // szt-data_2018-09-01.csv 合计 1229180 条
+//        val i = FileUtil.readUtf8Lines(SAVE_PATH).size()
+//        // 核对 ES 数据库，记录完全一致！！！
+//        println(i) // szt-data_2018-09-01.csv 合计 1229180 条
     }
 }

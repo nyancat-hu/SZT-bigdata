@@ -16,7 +16,7 @@ object RedisUtil {
     jedisPoolConfig.setBlockWhenExhausted(true) //忙碌时是否等待
     jedisPoolConfig.setMaxWaitMillis(2000) //忙碌时等待时长 毫秒
     jedisPoolConfig.setTestOnBorrow(false) //每次获得连接的进行测试
-    private val jedisPool: JedisPool = new JedisPool(jedisPoolConfig, "localhost", 6379)
+    private val jedisPool: JedisPool = new JedisPool(jedisPoolConfig, "Topview104", 6379)
 
     // 直接得到一个 Redis 的连接
     def getJedisClient: Jedis = {
@@ -24,7 +24,7 @@ object RedisUtil {
     }
 
     //测试通过
-    //def main(args: Array[String]): Unit = {
-    //	println(getJedisClient.hget("szt:pageJson", "1"))
-    //}
+//    def main(args: Array[String]): Unit = {
+//    	println(getJedisClient.hget("szt:pageJson", "1"))
+//    }
 }
